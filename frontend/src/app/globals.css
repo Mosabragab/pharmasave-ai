@@ -1,0 +1,210 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Brand Colors */
+  --color-pharmacy-green: 30 138 110; /* #1E8A6E */
+  --color-trust-blue: 44 77 125; /* #2C4D7D */
+  --color-alert-orange: 230 126 34; /* #E67E22 */
+  
+  /* Secondary Colors */
+  --color-light-green: 162 217 195; /* #A2D9C3 */
+  --color-pale-blue: 212 230 241; /* #D4E6F1 */
+  
+  /* Neutral Colors */
+  --color-soft-white: 247 249 251; /* #F7F9FB */
+  --color-charcoal: 52 73 94; /* #34495E */
+  --color-light-gray: 236 240 243; /* #ECF0F3 */
+  --color-medium-gray: 189 195 199; /* #BDC3C7 */
+  --color-dark-gray: 127 140 141; /* #7F8C8D */
+
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+/* Base Typography */
+html {
+  font-family: Inter, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  direction: ltr;
+}
+
+html[dir="rtl"] {
+  direction: rtl;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--color-soft-white);
+  color: rgb(var(--color-charcoal));
+  transition: color 200ms, background-color 200ms;
+}
+
+.dark body {
+  background: rgb(15 23 42); /* slate-900 - consistent dark blue */
+  color: rgb(248 250 252); /* slate-50 */
+}
+
+/* Ensure ONE consistent dark blue for entire page */
+.dark {
+  background-color: rgb(15 23 42); /* slate-900 - main dark blue */
+}
+
+/* Force header to match page background */
+.dark nav,
+.dark header,
+.dark .bg-white {
+  background-color: rgb(15 23 42) !important; /* same dark blue as page */
+}
+
+/* Force ALL page containers to use same dark blue */
+.dark .min-h-screen,
+.dark section,
+.dark main {
+  background-color: rgb(15 23 42); /* consistent dark blue */
+}
+
+/* Clean dark mode color overrides - keep cards slightly lighter */
+.dark .bg-gray-50 { background-color: rgb(248 250 252); /* slate-50 */ }
+.dark .bg-gray-100 { background-color: rgb(241 245 249); /* slate-100 */ }
+.dark .bg-gray-200 { background-color: rgb(226 232 240); /* slate-200 */ }
+.dark .bg-gray-300 { background-color: rgb(203 213 225); /* slate-300 */ }
+.dark .bg-gray-400 { background-color: rgb(148 163 184); /* slate-400 */ }
+.dark .bg-gray-500 { background-color: rgb(100 116 139); /* slate-500 */ }
+.dark .bg-gray-600 { background-color: rgb(71 85 105); /* slate-600 */ }
+.dark .bg-gray-700 { background-color: rgb(51 65 85); /* slate-700 */ }
+.dark .bg-gray-800 { background-color: rgb(30 41 59); /* slate-800 - for cards */ }
+.dark .bg-gray-900 { background-color: rgb(15 23 42); /* slate-900 - main background */ }
+
+/* Dark mode border colors */
+.dark .border-gray-100 { border-color: rgb(241 245 249); /* slate-100 */ }
+.dark .border-gray-200 { border-color: rgb(226 232 240); /* slate-200 */ }
+.dark .border-gray-300 { border-color: rgb(203 213 225); /* slate-300 */ }
+.dark .border-gray-400 { border-color: rgb(148 163 184); /* slate-400 */ }
+.dark .border-gray-500 { border-color: rgb(100 116 139); /* slate-500 */ }
+.dark .border-gray-600 { border-color: rgb(71 85 105); /* slate-600 */ }
+.dark .border-gray-700 { border-color: rgb(51 65 85); /* slate-700 */ }
+.dark .border-gray-800 { border-color: rgb(30 41 59); /* slate-800 */ }
+
+/* Dark mode text colors */
+.dark .text-gray-100 { color: rgb(241 245 249); /* slate-100 */ }
+.dark .text-gray-200 { color: rgb(226 232 240); /* slate-200 */ }
+.dark .text-gray-300 { color: rgb(203 213 225); /* slate-300 */ }
+.dark .text-gray-400 { color: rgb(148 163 184); /* slate-400 */ }
+.dark .text-gray-500 { color: rgb(100 116 139); /* slate-500 */ }
+.dark .text-gray-600 { color: rgb(71 85 105); /* slate-600 */ }
+.dark .text-gray-700 { color: rgb(51 65 85); /* slate-700 */ }
+.dark .text-gray-800 { color: rgb(30 41 59); /* slate-800 */ }
+.dark .text-gray-900 { color: rgb(15 23 42); /* slate-900 */ }
+
+/* DARK MODE ONLY: Replace trust-blue with white for better visibility */
+.dark .text-trust-blue {
+  color: white !important; /* white instead of trust-blue in dark mode */
+}
+
+.dark .border-trust-blue {
+  border-color: white !important; /* white border instead of trust-blue in dark mode */
+}
+
+.dark .hover\:text-trust-blue\/80:hover {
+  color: rgba(255, 255, 255, 0.8) !important; /* white with opacity on hover */
+}
+
+.dark .hover\:bg-trust-blue\/10:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important; /* white with low opacity background */
+}
+
+.dark .hover\:bg-trust-blue\/5:hover {
+  background-color: rgba(255, 255, 255, 0.05) !important; /* very subtle white background */
+}
+
+/* Fix button variants in dark mode */
+.dark .bg-trust-blue {
+  background-color: white !important; /* white background instead of trust-blue */
+  color: rgb(15 23 42) !important; /* dark text on white background */
+}
+
+.dark .bg-trust-blue:hover {
+  background-color: rgba(255, 255, 255, 0.9) !important; /* slightly transparent white on hover */
+}
+
+/* TARGETED: Profile Setup Tasks section background (not individual cards) */
+.dark .profile-setup-tasks {
+  background-color: rgb(30 41 59) !important; /* slate-800 background for entire section */
+  border-radius: 0.5rem; /* rounded corners */
+  padding: 1rem; /* some padding */
+}
+
+.dark .profile-task-card {
+  background-color: rgb(15 23 42) !important; /* slate-900 - darker cards on lighter section */
+  border-color: rgba(71, 85, 105, 0.3) !important; /* subtle border */
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Inter, sans-serif;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 1.875rem;
+  line-height: 2.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.75rem;
+}
+
+h4 {
+  font-size: 1.125rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+
+p {
+  line-height: 1.5rem;
+}
+
+small {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+/* RTL Support */
+[dir="rtl"] {
+  text-align: right;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in;
+}
+
+@keyframes slideUp {
+  from { transform: translateY(10px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.animate-slide-up {
+  animation: slideUp 0.3s ease-out;
+}
